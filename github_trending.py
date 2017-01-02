@@ -6,8 +6,8 @@ def get_trending_repositories(top_size):
     week_ago = datetime.strftime(datetime.now() - timedelta(days=7), '%Y-%m-%d')
     url = 'https://api.github.com/search/repositories'
     payload = {'q': 'created:>%s' % week_ago, 'sort': 'stars', 'per_page': top_size}
-    request = requests.get(url, params=payload)
-    return request.json()["items"]
+    response = requests.get(url, params=payload)
+    return response.json()["items"]
 
 
 def print_repositories(data):
